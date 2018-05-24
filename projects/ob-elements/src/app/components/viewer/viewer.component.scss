@@ -1,0 +1,25 @@
+.page-container {
+  height: 100%;
+  width: 100%;
+  border: 1px solid rgba(0, 0, 0, 0.329);;
+  overflow-y: auto;
+  overflow-x: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-wrap: nowrap;
+}
+
+.page {
+  height: 800px;
+  width: 600px;
+  border: 1px solid rgba(0, 0, 0, 0.329);
+  border-radius: 2px;
+  margin: 5px;
+  box-shadow: 2px 3px 10px 0px rgba(0, 0, 0, 0.329);
+}
+
+.page img {
+  width: 100%;
+  height: 100%;
+}

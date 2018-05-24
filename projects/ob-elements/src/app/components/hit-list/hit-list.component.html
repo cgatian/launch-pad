@@ -1,0 +1,3 @@
+<mat-nav-list dense>
+  <mat-list-item *ngFor="let document of documents" (click)="onDocumentSelected(document)">{{ document.name }}</mat-list-item>
+</mat-nav-list>

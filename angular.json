@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "fusion": {
+    "launch-pad": {
       "root": "",
       "sourceRoot": "src",
       "projectType": "application",
@@ -13,7 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/fusion",
+            "outputPath": "dist/launch-pad",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -23,9 +23,13 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.css"
+              {
+                "input": "node_modules/@angular/material/prebuilt-themes/indigo-pink.css"
+              },
+              "src/styles.scss"
             ],
-            "scripts": []
+            "scripts": [
+            ]
           },
           "configurations": {
             "production": {
@@ -50,18 +54,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "fusion:build"
+            "browserTarget": "launch-pad:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "fusion:build:production"
+              "browserTarget": "launch-pad:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "fusion:build"
+            "browserTarget": "launch-pad:build"
           }
         },
         "test": {
@@ -72,7 +76,10 @@
             "tsConfig": "src/tsconfig.spec.json",
             "karmaConfig": "src/karma.conf.js",
             "styles": [
-              "src/styles.css"
+              {
+                "input": "node_modules/@angular/material/prebuilt-themes/indigo-pink.css"
+              },
+              "src/styles.scss"
             ],
             "scripts": [],
             "assets": [
@@ -95,21 +102,115 @@
         }
       }
     },
-    "fusion-e2e": {
-      "root": "e2e/",
+    "ob-elements": {
+      "root": "projects/ob-elements/",
+      "sourceRoot": "projects/ob-elements/src",
       "projectType": "application",
+      "prefix": "app",
+      "schematics": {},
       "architect": {
-        "e2e": {
-          "builder": "@angular-devkit/build-angular:protractor",
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "fusion:serve"
+            "outputPath": "dist/ob-elements",
+            "index": "projects/ob-elements/src/index.html",
+            "main": "projects/ob-elements/src/main.ts",
+            "polyfills": "projects/ob-elements/src/polyfills.ts",
+            "tsConfig": "projects/ob-elements/tsconfig.app.json",
+            "assets": [
+              "projects/ob-elements/src/favicon.ico",
+              "projects/ob-elements/src/assets"
+            ],
+            "styles": [
+              "projects/ob-elements/src/styles.scss"
+            ],
+            "scripts": [{
+              "input": "node_modules/document-register-element/build/document-register-element.js"
+            }]
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "projects/ob-elements/src/environments/environment.ts",
+                  "with": "projects/ob-elements/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "ob-elements:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "ob-elements:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "ob-elements:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/ob-elements/src/test.ts",
+            "polyfills": "projects/ob-elements/src/polyfills.ts",
+            "tsConfig": "projects/ob-elements/tsconfig.spec.json",
+            "karmaConfig": "projects/ob-elements/karma.conf.js",
+            "styles": [
+              "projects/ob-elements/src/styles.scss"
+            ],
+            "scripts": [],
+            "assets": [
+              "projects/ob-elements/src/favicon.ico",
+              "projects/ob-elements/src/assets"
+            ]
           }
         },
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
-            "tsConfig": "e2e/tsconfig.e2e.json",
+            "tsConfig": [
+              "projects/ob-elements/tsconfig.app.json",
+              "projects/ob-elements/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    },
+    "ob-elements-e2e": {
+      "root": "projects/ob-elements-e2e/",
+      "projectType": "application",
+      "architect": {
+        "e2e": {
+          "builder": "@angular-devkit/build-angular:protractor",
+          "options": {
+            "protractorConfig": "projects/ob-elements-e2e/protractor.conf.js",
+            "devServerTarget": "ob-elements:serve"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": "projects/ob-elements-e2e/tsconfig.e2e.json",
             "exclude": [
               "**/node_modules/**"
             ]
@@ -118,5 +219,5 @@
       }
     }
   },
-  "defaultProject": "fusion"
+  "defaultProject": "launch-pad"
 }
