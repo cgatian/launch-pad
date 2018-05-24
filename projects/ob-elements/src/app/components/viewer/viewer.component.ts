@@ -22,7 +22,7 @@ export class ObViewerComponent extends ListenerComponent implements OnInit {
       id: '1', pageCount: 3, url: '/assets/docs/1/page-1.jpg',
     },
     {
-      id: '2', pageCount: 5, url: '/assets/docs/2/page-1.png',
+      id: '2', pageCount: 5, url: '/assets/docs/2/page-1.jpg',
     },
     {
       id: '3', pageCount: 2, url: '/assets/docs/3/page-1.jpg',
